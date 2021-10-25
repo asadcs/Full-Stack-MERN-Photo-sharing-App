@@ -8,14 +8,16 @@ import {
   Button,
   Typography,
 } from "@material-ui/core/";
-//import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-//import DeleteIcon from "@material-ui/icons/Delete";
-// import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+// import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import DeleteIcon from "@material-ui/icons/Delete";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import useStyles from "./styles";
+import { deletePost } from "../../../actions/posts";
 
-const Post = ({ post }) => {
+const Post = ({ post, setCurrentId }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   return (
@@ -23,7 +25,7 @@ const Post = ({ post }) => {
       <CardMedia
         className={classes.media}
         image={
-          //post.selectedFile ||
+          post.selectedFile ||
           "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
         }
         title={post.title}
@@ -38,15 +40,15 @@ const Post = ({ post }) => {
         <Button
           style={{ color: "white" }}
           size="small"
-          // onClick={() => setCurrentId(post._id)}
+          onClick={() => setCurrentId(post._id)}
         >
-          {/* <MoreHorizIcon fontSize="default" /> */}
+          <MoreHorizIcon fontSize="default" />
         </Button>
       </div>
       <div className={classes.details}>
-        {/* <Typography variant="body2" color="textSecondary" component="h2">
+        <Typography variant="body2" color="textSecondary" component="h2">
           {post.tags.map((tag) => `#${tag} `)}
-        </Typography> */}
+        </Typography>
       </div>
       <Typography
         className={classes.title}
@@ -72,9 +74,9 @@ const Post = ({ post }) => {
         <Button
           size="small"
           color="primary"
-          //  onClick={() => dispatch(deletePost(post._id))}
+          onClick={() => dispatch(deletePost(post._id))}
         >
-          {/* <DeleteIcon fontSize="small" /> Delete */}
+          <DeleteIcon fontSize="small" /> Delete
         </Button>
       </CardActions>
     </Card>
