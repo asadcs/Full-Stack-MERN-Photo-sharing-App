@@ -4,4 +4,5 @@ export const ActionTypes = {
   CREATE: "CREATE",
   UPDATE: "UPDATE",
   DELETE: "DELETE",
+  LIKE: "LIKE",
 };
